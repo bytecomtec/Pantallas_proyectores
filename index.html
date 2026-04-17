@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Bytecomtec - Catálogo Digital</title>
+    <title>Bytecomtec - Catálogo</title>
     <style>
         :root {
             --primary: #1a73e8;
-            --bg: #f8f9fa;
+            --accent: #34a853;
+            --bg: #fdfdfd;
+            --text: #202124;
             --white: #ffffff;
-            --shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: 'Segoe UI', Roboto, sans-serif;
             background-color: var(--bg);
             margin: 0;
             padding: 10px;
@@ -22,15 +23,15 @@
             align-items: center;
         }
 
-        /* --- CABECERA --- */
+        /* --- LOGO --- */
         .header-logo {
             width: 100%;
+            max-width: 450px;
             text-align: center;
-            padding: 10px 0;
+            padding: 5px 0 15px 0;
         }
         .header-logo img {
-            width: 45%; /* Tamaño solicitado al 50% aprox */
-            max-width: 160px;
+            width: 45%; 
             height: auto;
         }
 
@@ -40,34 +41,37 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 10px;
             width: 100%;
-            max-width: 480px;
+            max-width: 450px;
         }
 
         .card {
             background: var(--white);
-            border-radius: 15px;
-            padding: 15px 5px;
+            border-radius: 12px;
+            padding: 15px 8px;
             text-align: center;
-            box-shadow: var(--shadow);
-            border: 1px solid #eee;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
             cursor: pointer;
+            border: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             transition: transform 0.1s;
         }
-        .card:active { transform: scale(0.95); }
-        .full-width { grid-column: span 2; background: #eff6ff; }
-        .success { background: #f0fdf4; }
-        .card h3 { font-size: 0.85rem; margin: 8px 0 0; color: #333; }
+        .card:active { transform: scale(0.96); background: #fafafa; }
+        .card h3 { font-size: 0.8rem; margin: 8px 0 0 0; line-height: 1.1; }
         .icon { font-size: 24px; }
+        .full-width { grid-column: span 2; }
+        .highlight { background: #eff6ff; border-color: #bfdbfe; }
+        .success { background: #f0fdf4; border-color: #bbf7d0; }
 
-        /* --- MODALES RESPONSIVOS --- */
+        /* --- ESTILOS DEL MODAL (RESPONSIVO MÓVIL) --- */
         .modal {
             display: none;
             position: fixed;
             z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
             background-color: rgba(0,0,0,0.7);
             backdrop-filter: blur(3px);
         }
@@ -76,9 +80,9 @@
             background-color: white;
             margin: 5% auto;
             padding: 20px;
-            border-radius: 25px 25px 0 0; /* Estilo 'sheet' de móvil */
+            border-radius: 20px 20px 0 0;
             width: 90%;
-            max-width: 450px;
+            max-width: 420px;
             height: 85vh;
             overflow-y: auto;
             position: relative;
@@ -94,79 +98,56 @@
             position: sticky;
             top: 0;
             float: right;
-            font-size: 30px;
+            font-size: 28px;
             font-weight: bold;
-            color: #ccc;
-            background: white;
-            border-radius: 50%;
-            width: 35px;
-            height: 35px;
-            text-align: center;
-            line-height: 30px;
+            color: #aaa;
+            cursor: pointer;
             z-index: 10;
         }
 
-        /* --- FICHAS DE PRODUCTO --- */
-        .brand-section { margin-bottom: 30px; }
-        .brand-logo-container {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .brand-logo-container img { height: 25px; width: auto; }
+        /* --- FICHAS DE PRODUCTO DENTRO DEL MODAL --- */
+        .brand-block { margin-bottom: 30px; }
+        .brand-logo-center { text-align: center; margin: 15px 0; }
+        .brand-logo-center img { height: 25px; width: auto; }
 
         .product-card {
             background: #fff;
             border: 1px solid #eee;
-            border-radius: 15px;
+            border-radius: 12px;
             margin-bottom: 15px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .product-img-box {
-            width: 100%;
-            height: 150px;
-            background: #f9f9f9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             padding: 10px;
         }
-        .product-img-box img { max-height: 100%; max-width: 100%; object-fit: contain; }
-
-        .product-info { padding: 15px; }
-        .product-info h4 { margin: 0 0 8px; font-size: 1rem; color: var(--primary); }
-        .product-info ul { 
-            margin: 0; 
-            padding-left: 18px; 
-            font-size: 0.85rem; 
-            color: #555; 
-            line-height: 1.4;
-        }
-
-        /* --- BOTÓN WEB FINAL --- */
-        .footer-cta {
+        .product-img {
             width: 100%;
-            max-width: 480px;
-            margin-top: 20px;
-            background: linear-gradient(135deg, #1a73e8, #0b4a9e);
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-            color: white;
-            box-sizing: border-box;
+            height: 130px;
+            object-fit: contain;
+            border-bottom: 1px solid #f0f0f0;
+            margin-bottom: 10px;
         }
-        .btn-link {
+        .product-info h4 { margin: 5px 0; font-size: 0.95rem; color: var(--primary); }
+        .product-info ul { margin: 0; padding-left: 20px; font-size: 0.8rem; color: #555; }
+
+        /* --- FOOTER WEB --- */
+        .web-footer {
+            width: 100%;
+            max-width: 450px;
+            margin-top: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #1a73e8, #0d47a1);
+            border-radius: 12px;
+            color: white;
+            text-align: center;
+        }
+        .btn-web {
             display: inline-block;
-            margin-top: 10px;
             background: white;
-            color: var(--primary);
-            padding: 12px 24px;
-            border-radius: 30px;
+            color: #1a73e8;
+            padding: 10px 20px;
+            border-radius: 20px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -177,115 +158,101 @@
     </div>
 
     <div class="catalog-grid">
-        <div class="card full-width" onclick="openModal('modalPantallas')">
+        <div class="card full-width highlight" onclick="openModal('modalPantallas')">
             <span class="icon">🖥️</span>
             <h3>Pantallas Interactivas y Proyectores</h3>
-            <small style="color: var(--primary); font-weight: bold;">Toca para ver modelos</small>
+            <small style="color: var(--primary); font-size: 0.65rem; margin-top: 5px;">VER MODELOS</small>
         </div>
 
-        <div class="card">
+        <div class="card" onclick="openModal('modalAudio')">
             <span class="icon">📢</span>
             <h3>Audio Escolar</h3>
         </div>
 
-        <div class="card">
+        <div class="card" onclick="openModal('modalRedes')">
             <span class="icon">🌐</span>
             <h3>Redes y Wi-Fi</h3>
         </div>
 
-        <div class="card">
-            <span class="icon">🛡️</span>
-            <h3>CCTV</h3>
+        <div class="card" onclick="openModal('modalComputo')">
+            <span class="icon">💻</span>
+            <h3>Cómputo y Smart TVs</h3>
         </div>
 
-        <div class="card">
+        <div class="card" onclick="openModal('modalConmutadores')">
             <span class="icon">📞</span>
             <h3>Conmutadores</h3>
         </div>
 
-        <div class="card full-width success">
+        <div class="card" onclick="openModal('modalCCTV')">
+            <span class="icon">🛡️</span>
+            <h3>Videovigilancia (CCTV)</h3>
+        </div>
+
+        <div class="card" onclick="openModal('modalAcceso')">
+            <span class="icon">🔑</span>
+            <h3>Control de Acceso</h3>
+        </div>
+
+        <div class="card full-width success" onclick="openModal('modalSoporte')">
             <span class="icon">🛠️</span>
-            <h3>Soporte y Pólizas</h3>
+            <h3>Soporte y Pólizas de Servicio</h3>
         </div>
     </div>
 
-    <div class="footer-cta">
-        <p style="margin:0;">¿Buscas algo más específico?</p>
-        <a href="https://bytecomtec.com" class="btn-link">Visitar Sitio Web</a>
+    <div class="web-footer">
+        <p style="margin:0; font-size: 0.9rem;">¿Desea conocer más?</p>
+        <a href="https://bytecomtec.com" class="btn-web">Ir a la Página Web</a>
     </div>
+
+    <p style="font-size: 0.6rem; color: #bbb; margin-top: 15px;">&copy; 2026 Bytecomtec</p>
 
     <div id="modalPantallas" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('modalPantallas')">&times;</span>
+            <h2 style="text-align:center; font-size: 1.1rem; color: #333;">Soluciones Visuales</h2>
             
-            <h2 style="text-align: center; font-size: 1.2rem;">Catálogo Visual</h2>
-
-            <div class="brand-section">
-                <div class="brand-logo-container">
-                    <img src="logo-huawei.png" alt="Huawei">
-                </div>
-                
+            <div class="brand-block">
+                <div class="brand-logo-center"><img src="logo-huawei.png" alt="Huawei"></div>
                 <div class="product-card">
-                    <div class="product-img-box"><img src="ihb2-65pb.jpg" alt="IHB2-65PB"></div>
+                    <img src="huawei-65.jpg" class="product-img" alt="IHB2-65PB">
                     <div class="product-info">
-                        <h4>Modelo: IHB2-65PB</h4>
+                        <h4>IHB2-65PB</h4>
                         <ul>
                             <li>Resolución 4K UHD</li>
-                            <li>Escritura fluida (16ms)</li>
-                            <li>Cámara y micrófonos inteligentes</li>
+                            <li>Escritura ultra fluida (16ms)</li>
+                            <li>Cámara y micros integrados</li>
                         </ul>
                     </div>
                 </div>
-
                 <div class="product-card">
-                    <div class="product-img-box"><img src="ds-d5c75rb.jpg" alt="DS-D5C75RB"></div>
+                    <img src="huawei-75.jpg" class="product-img" alt="DS-D5C75RB">
                     <div class="product-info">
-                        <h4>Modelo: DS-D5C75RB/B2L</h4>
+                        <h4>DS-D5C75RB/B2L (EDLA)</h4>
                         <ul>
-                            <li>Certificación Google EDLA</li>
-                            <li>Acceso nativo a Google Play</li>
-                            <li>Ideal para colaboración en la nube</li>
+                            <li>Certificación Google Oficial</li>
+                            <li>Acceso nativo a Play Store</li>
+                            <li>75 Pulgadas 4K</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
-            <div class="brand-section">
-                <div class="brand-logo-container">
-                    <img src="logo-epson.png" alt="Epson">
-                </div>
-                
+            <div class="brand-block">
+                <div class="brand-logo-center"><img src="logo-hikvision.png" alt="Hikvision"></div>
                 <div class="product-card">
-                    <div class="product-img-box"><img src="epson-e24.jpg" alt="PowerLite E24"></div>
+                    <img src="hik-65.jpg" class="product-img" alt="DS-D5C65RB">
                     <div class="product-info">
-                        <h4>PowerLite E24</h4>
+                        <h4>DS-D5C65RB/A2L (EDLA)</h4>
                         <ul>
-                            <li>3,500 lúmenes en blanco y color</li>
-                            <li>Tecnología 3LCD</li>
-                            <li>Conector HDMI y parlante integrado</li>
+                            <li>Android 13 certificado</li>
+                            <li>Tecnología Zero-gap</li>
+                            <li>Protección ocular avanzada</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
-            <button onclick="closeModal('modalPantallas')" style="width:100%; padding:15px; border-radius:15px; border:none; background:#f0f0f0; font-weight:bold;">Volver</button>
-        </div>
-    </div>
-
-    <script>
-        function openModal(id) {
-            document.getElementById(id).style.display = "block";
-            document.body.style.overflow = "hidden";
-        }
-        function closeModal(id) {
-            document.getElementById(id).style.display = "none";
-            document.body.style.overflow = "auto";
-        }
-        window.onclick = function(event) {
-            if (event.target.className === 'modal') {
-                closeModal(event.target.id);
-            }
-        }
-    </script>
-</body>
-</html>
+            <div class="brand-block">
+                <div class="brand-logo-center"><img src="logo-epson.png" alt="Epson"></div>
+                <div class="product
