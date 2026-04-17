@@ -1,101 +1,264 @@
-<div id="modalPantallas" class="modal">
-    <div class="modal-content" style="max-width: 420px; padding: 15px;">
-        <span class="close" onclick="closeModal('modalPantallas')" style="margin-top: -10px;">&times;</span>
-        <h2 style="font-size: 1.1rem; color: var(--primary); text-align: center; margin-top: 5px; margin-bottom: 20px;">Soluciones Visuales Interactivas</h2>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Bytecomtec - Catálogo Digital</title>
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --bg: #f8f9fa;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
 
-        <div class="brand-block" style="margin-bottom: 25px;">
-            <div style="text-align: center; margin-bottom: 15px;">
-                <img src="logo-huawei.png" alt="Huawei" style="height: 25px; width: auto;">
-            </div>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-            <div class="product-scroller" style="display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px;">
-                
-                <div class="product-card-mini" style="flex: 0 0 80%; background: #fff; border: 1px solid #eee; border-radius: 10px; padding: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-                    <img src="huawei-ihb2-65pb.jpg" alt="IHB2-65PB" style="width: 100%; height: 120px; object-fit: contain; border-bottom: 1px solid #eee; margin-bottom: 8px;">
-                    <div class="product-model" style="font-weight: bold; font-size: 0.9rem; margin-bottom: 5px;">IHB2-65PB</div>
-                    <ul class="product-specs" style="font-size: 0.75rem; color: #555; padding-left: 15px; margin: 0;">
-                        <li>Pantalla 65" 4K UHD</li>
-                        <li>Escritura ultra fluida (16ms)</li>
-                        <li>Cámara y micrófonos integrados</li>
-                        <li>Sistema operativo IdeaHub OS</li>
-                    </ul>
-                </div>
+        /* --- CABECERA --- */
+        .header-logo {
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+        }
+        .header-logo img {
+            width: 45%; /* Tamaño solicitado al 50% aprox */
+            max-width: 160px;
+            height: auto;
+        }
 
-                <div class="product-card-mini" style="flex: 0 0 80%; background: #fff; border: 1px solid #eee; border-radius: 10px; padding: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-                    <img src="huawei-ds-d5c75rb.jpg" alt="DS-D5C75RB/B2L" style="width: 100%; height: 120px; object-fit: contain; border-bottom: 1px solid #eee; margin-bottom: 8px;">
-                    <div class="product-model" style="font-weight: bold; font-size: 0.9rem; margin-bottom: 5px;">DS-D5C75RB/B2L</div>
-                    <ul class="product-specs" style="font-size: 0.75rem; color: #555; padding-left: 15px; margin: 0;">
-                        <li>Pantalla 75" 4K</li>
-                        <li>Certificación Google EDLA</li>
-                        <li>Acceso nativo a Play Store</li>
-                        <li>Colaboración multi-dispositivo</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        /* --- GRID PRINCIPAL --- */
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            width: 100%;
+            max-width: 480px;
+        }
 
-        <div class="brand-block" style="margin-bottom: 25px;">
-            <div style="text-align: center; margin-bottom: 15px;">
-                <img src="logo-hikvision.png" alt="Hikvision" style="height: 20px; width: auto;">
-            </div>
+        .card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 15px 5px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 1px solid #eee;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+        .card:active { transform: scale(0.95); }
+        .full-width { grid-column: span 2; background: #eff6ff; }
+        .success { background: #f0fdf4; }
+        .card h3 { font-size: 0.85rem; margin: 8px 0 0; color: #333; }
+        .icon { font-size: 24px; }
 
-            <div class="product-scroller" style="display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px;">
-                
-                <div class="product-card-mini" style="flex: 0 0 80%; background: #fff; border: 1px solid #eee; border-radius: 10px; padding: 10px;">
-                    <img src="hikvision-65.jpg" alt="DS-D5C65RB/A2L" style="width: 100%; height: 120px; object-fit: contain; border-bottom: 1px solid #eee; margin-bottom: 8px;">
-                    <div class="product-model" style="font-weight: bold; font-size: 0.9rem; margin-bottom: 5px;">DS-D5C65RB/A2L</div>
-                    <ul class="product-specs" style="font-size: 0.75rem; color: #555; padding-left: 15px; margin: 0;">
-                        <li>65" 4K Interactiva</li>
-                        <li>Android 13 (EDLA)</li>
-                        <li>Tecnología Zero-gap (Escritura real)</li>
-                        <li>Salud ocular (Low Blue Light)</li>
-                    </ul>
-                </div>
+        /* --- MODALES RESPONSIVOS --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            backdrop-filter: blur(3px);
+        }
 
-                <div class="product-card-mini" style="flex: 0 0 80%; background: #fff; border: 1px solid #eee; border-radius: 10px; padding: 10px;">
-                    <img src="hikvision-75.jpg" alt="DS-D5C75RB/A2L" style="width: 100%; height: 120px; object-fit: contain; border-bottom: 1px solid #eee; margin-bottom: 8px;">
-                    <div class="product-model" style="font-weight: bold; font-size: 0.9rem; margin-bottom: 5px;">DS-D5C75RB/A2L</div>
-                    <ul class="product-specs" style="font-size: 0.75rem; color: #555; padding-left: 15px; margin: 0;">
-                        <li>75" 4K Interactiva</li>
-                        <li>Android 13 (EDLA)</li>
-                        <li>Altavoces potentes integrados</li>
-                        <li>Ideal para salones grandes</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 25px 25px 0 0; /* Estilo 'sheet' de móvil */
+            width: 90%;
+            max-width: 450px;
+            height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.3s ease-out;
+        }
 
-        <div class="brand-block" style="margin-bottom: 20px;">
-            <div style="text-align: center; margin-bottom: 15px;">
-                <img src="logo-epson.png" alt="Epson" style="height: 25px; width: auto;">
-            </div>
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
 
-            <div class="product-scroller" style="display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px;">
-                
-                <div class="product-card-mini" style="flex: 0 0 80%; background: #fff; border: 1px solid #eee; border-radius: 10px; padding: 10px;">
-                    <img src="epson-e24.jpg" alt="PowerLite E24" style="width: 100%; height: 120px; object-fit: contain; border-bottom: 1px solid #eee; margin-bottom: 8px;">
-                    <div class="product-model" style="font-weight: bold; font-size: 0.9rem; margin-bottom: 5px;">PowerLite E24</div>
-                    <ul class="product-specs" style="font-size: 0.75rem; color: #555; padding-left: 15px; margin: 0;">
-                        <li>Proyector 3LCD</li>
-                        <li>3,500 Lúmenes (Color/Blanco)</li>
-                        <li>Resolución XGA nativa</li>
-                        <li>Conectividad HDMI/VGA</li>
-                    </ul>
-                </div>
+        .close {
+            position: sticky;
+            top: 0;
+            float: right;
+            font-size: 30px;
+            font-weight: bold;
+            color: #ccc;
+            background: white;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            text-align: center;
+            line-height: 30px;
+            z-index: 10;
+        }
 
-                <div class="product-card-mini" style="flex: 0 0 80%; background: #fff; border: 1px solid #eee; border-radius: 10px; padding: 10px;">
-                    <img src="epson-v11h983020.jpg" alt="V11H983020" style="width: 100%; height: 120px; object-fit: contain; border-bottom: 1px solid #eee; margin-bottom: 8px;">
-                    <div class="product-model" style="font-weight: bold; font-size: 0.9rem; margin-bottom: 5px;">V11H983020</div>
-                    <ul class="product-specs" style="font-size: 0.75rem; color: #555; padding-left: 15px; margin: 0;">
-                        <li>Modelo PowerLite L200W (Ref.)</li>
-                        <li>Fuente de luz Láser</li>
-                        <li>4,200 Lúmenes de brillo</li>
-                        <li>Resolución WXGA (HD)</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        
-        <button onclick="closeModal('modalPantallas')" style="width:100%; padding:12px; border-radius:10px; border:none; background:#333; color:white; font-weight:bold; cursor:pointer; margin-top: 10px;">Regresar al Catálogo</button>
+        /* --- FICHAS DE PRODUCTO --- */
+        .brand-section { margin-bottom: 30px; }
+        .brand-logo-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .brand-logo-container img { height: 25px; width: auto; }
+
+        .product-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-img-box {
+            width: 100%;
+            height: 150px;
+            background: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+        .product-img-box img { max-height: 100%; max-width: 100%; object-fit: contain; }
+
+        .product-info { padding: 15px; }
+        .product-info h4 { margin: 0 0 8px; font-size: 1rem; color: var(--primary); }
+        .product-info ul { 
+            margin: 0; 
+            padding-left: 18px; 
+            font-size: 0.85rem; 
+            color: #555; 
+            line-height: 1.4;
+        }
+
+        /* --- BOTÓN WEB FINAL --- */
+        .footer-cta {
+            width: 100%;
+            max-width: 480px;
+            margin-top: 20px;
+            background: linear-gradient(135deg, #1a73e8, #0b4a9e);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            box-sizing: border-box;
+        }
+        .btn-link {
+            display: inline-block;
+            margin-top: 10px;
+            background: white;
+            color: var(--primary);
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-logo">
+        <img src="logo-bytecomtec.png" alt="Bytecomtec">
     </div>
-</div>
+
+    <div class="catalog-grid">
+        <div class="card full-width" onclick="openModal('modalPantallas')">
+            <span class="icon">🖥️</span>
+            <h3>Pantallas Interactivas y Proyectores</h3>
+            <small style="color: var(--primary); font-weight: bold;">Toca para ver modelos</small>
+        </div>
+
+        <div class="card">
+            <span class="icon">📢</span>
+            <h3>Audio Escolar</h3>
+        </div>
+
+        <div class="card">
+            <span class="icon">🌐</span>
+            <h3>Redes y Wi-Fi</h3>
+        </div>
+
+        <div class="card">
+            <span class="icon">🛡️</span>
+            <h3>CCTV</h3>
+        </div>
+
+        <div class="card">
+            <span class="icon">📞</span>
+            <h3>Conmutadores</h3>
+        </div>
+
+        <div class="card full-width success">
+            <span class="icon">🛠️</span>
+            <h3>Soporte y Pólizas</h3>
+        </div>
+    </div>
+
+    <div class="footer-cta">
+        <p style="margin:0;">¿Buscas algo más específico?</p>
+        <a href="https://bytecomtec.com" class="btn-link">Visitar Sitio Web</a>
+    </div>
+
+    <div id="modalPantallas" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modalPantallas')">&times;</span>
+            
+            <h2 style="text-align: center; font-size: 1.2rem;">Catálogo Visual</h2>
+
+            <div class="brand-section">
+                <div class="brand-logo-container">
+                    <img src="logo-huawei.png" alt="Huawei">
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img-box"><img src="ihb2-65pb.jpg" alt="IHB2-65PB"></div>
+                    <div class="product-info">
+                        <h4>Modelo: IHB2-65PB</h4>
+                        <ul>
+                            <li>Resolución 4K UHD</li>
+                            <li>Escritura fluida (16ms)</li>
+                            <li>Cámara y micrófonos inteligentes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img-box"><img src="ds-d5c75rb.jpg" alt="DS-D5C75RB"></div>
+                    <div class="product-info">
+                        <h4>Modelo: DS-D5C75RB/B2L</h4>
+                        <ul>
+                            <li>Certificación Google EDLA</li>
+                            <li>Acceso nativo a Google Play</li>
+                            <li>Ideal para colaboración en la nube</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="brand-section">
+                <div class="brand-logo-container">
+                    <img src="logo-epson.png" alt="Epson">
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img-box"><img src="epson-e24.jpg" alt="PowerLite E24"></div>
+                    <div class="product-info">
+                        <h4>PowerLite E24</h4>
+                        <ul>
+                            <li>3,500 lúmenes en blanco y color</li>
+                            <li>Tec
