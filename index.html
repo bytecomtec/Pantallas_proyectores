@@ -261,4 +261,31 @@
                         <h4>PowerLite E24</h4>
                         <ul>
                             <li>3,500 lúmenes en blanco y color</li>
-                            <li>Tec
+                            <li>Tecnología 3LCD</li>
+                            <li>Conector HDMI y parlante integrado</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="closeModal('modalPantallas')" style="width:100%; padding:15px; border-radius:15px; border:none; background:#f0f0f0; font-weight:bold;">Volver</button>
+        </div>
+    </div>
+
+    <script>
+        function openModal(id) {
+            document.getElementById(id).style.display = "block";
+            document.body.style.overflow = "hidden";
+        }
+        function closeModal(id) {
+            document.getElementById(id).style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+        window.onclick = function(event) {
+            if (event.target.className === 'modal') {
+                closeModal(event.target.id);
+            }
+        }
+    </script>
+</body>
+</html>
