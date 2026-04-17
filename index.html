@@ -255,4 +255,46 @@
 
             <div class="brand-block">
                 <div class="brand-logo-center"><img src="logo-epson.png" alt="Epson"></div>
-                <div class="product
+                <div class="product-card">
+                    <img src="epson-e24.jpg" class="product-img" alt="PowerLite E24">
+                    <div class="product-info">
+                        <h4>PowerLite E24 / V11H983020</h4>
+                        <ul>
+                            <li>3,500 Lúmenes de brillo</li>
+                            <li>Tecnología 3LCD color real</li>
+                            <li>Vida útil lámpara 12,000h</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="closeModal('modalPantallas')" style="width:100%; padding:15px; border-radius:12px; border:none; background:#eee; font-weight:bold; cursor:pointer;">Cerrar Catálogo</button>
+        </div>
+    </div>
+
+    <script>
+        function openModal(id) {
+            var modal = document.getElementById(id);
+            if(modal) {
+                modal.style.display = "block";
+                document.body.style.overflow = "hidden"; // Bloquea scroll fondo
+            } else {
+                alert("Contenido en desarrollo: Pronto verás más modelos aquí.");
+            }
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+
+        // Cerrar al tocar fuera del cuadro blanco
+        window.onclick = function(event) {
+            if (event.target.className === 'modal') {
+                event.target.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+        }
+    </script>
+</body>
+</html>
