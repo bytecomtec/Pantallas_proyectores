@@ -1,116 +1,33 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bytecomtec - Catálogo Demo</title>
-    <style>
-        :root {
-            --primary: #1a73e8;
-            --bg: #fdfdfd;
-            --white: #ffffff;
-        }
-
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; padding: 10px; display: flex; flex-direction: column; align-items: center; }
+<div id="modalPantallas" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modalPantallas')">&times;</span>
+        <h2 style="font-size: 1.2rem; color: var(--primary); margin-bottom: 5px;">Soluciones Visuales</h2>
+        <p style="font-size: 0.8rem; color: #666; margin-bottom: 15px;">Modelos destacados para sector educativo</p>
         
-        /* Logo */
-        .header-logo img { width: 45%; max-width: 180px; margin: 10px 0; }
-
-        /* Grid Principal */
-        .catalog-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; width: 100%; max-width: 450px; }
-        
-        .card {
-            background: var(--white); border-radius: 12px; padding: 15px 5px; text-align: center;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05); border: 1px solid #eee; cursor: pointer;
-        }
-        .full-width { grid-column: span 2; background: #eff6ff; }
-        .card h3 { font-size: 0.8rem; margin-top: 8px; }
-
-        /* ESTILOS DEL MODAL */
-        .modal {
-            display: none; position: fixed; z-index: 100; left: 0; top: 0;
-            width: 100%; height: 100%; background-color: rgba(0,0,0,0.6);
-            overflow-y: auto;
-        }
-
-        .modal-content {
-            background-color: white; margin: 10% auto; padding: 20px;
-            border-radius: 20px; width: 85%; max-width: 400px; position: relative;
-        }
-
-        .close { float: right; font-size: 28px; font-weight: bold; color: #aaa; cursor: pointer; }
-
-        /* Estilo de Productos dentro del Modal */
-        .product-item { border-bottom: 1px solid #eee; padding: 15px 0; }
-        .product-item:last-child { border: none; }
-        .product-brand { font-weight: bold; color: var(--primary); font-size: 0.7rem; text-transform: uppercase; }
-        .product-model { font-size: 1rem; margin: 5px 0; font-weight: 600; }
-        .product-specs { font-size: 0.8rem; color: #555; list-style: none; padding: 0; }
-        .product-specs li::before { content: "• "; color: var(--primary); }
-    </style>
-</head>
-<body>
-
-    <div class="header-logo">
-        <img src="logo-bytecomtec.png" alt="Bytecomtec">
-    </div>
-
-    <div class="catalog-grid">
-        <div class="card full-width" onclick="openModal('modalPantallas')">
-            <span style="font-size: 24px;">🖥️</span>
-            <h3>Pantallas Interactivas y Proyectores</h3>
-            <small style="color: var(--primary); font-size: 0.7rem;">Ver Modelos</small>
+        <div style="background: #fdf2f2; padding: 10px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #f44336;">
+            <div class="product-brand" style="color: #f44336;">HUAWEI</div>
+            <div class="product-item">
+                <div class="product-model">IHB2-65PB</div>
+                <div class="product-model">DS-D5C75RB/B2L (EDLA)</div>
+            </div>
         </div>
 
-        <div class="card"><span>📢</span><h3>Audio Escolar</h3></div>
-        <div class="card"><span>🛡️</span><h3>CCTV</h3></div>
-    </div>
-
-    <div id="modalPantallas" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('modalPantallas')">&times;</span>
-            <h2 style="font-size: 1.2rem; color: var(--primary);">Soluciones Visuales</h2>
-            <hr>
-
+        <div style="background: #f8f9fa; padding: 10px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #d32f2f;">
+            <div class="product-brand" style="color: #d32f2f;">HIKVISION</div>
             <div class="product-item">
-                <div class="product-brand">HUAWEI IdeaHub</div>
-                <div class="product-model">IHB2-65PB / DS-D5C75RB</div>
-                <ul class="product-specs">
-                    <li>Resolución 4K UHD</li>
-                    <li>Escritura fluida 16ms</li>
-                    <li>Certificación EDLA (Google Services)</li>
-                </ul>
+                <div class="product-model">DS-D5C65RB/A2L (EDLA)</div>
+                <div class="product-model">DS-D5C75RB/A2L (EDLA)</div>
             </div>
-
-            <div class="product-item">
-                <div class="product-brand">HIKVISION Interactive</div>
-                <div class="product-model">DS-D5C65RB / DS-D5C75RB</div>
-                <ul class="product-specs">
-                    <li>Android 13 integrado</li>
-                    <li>Tecnología Zero-gap para escritura real</li>
-                    <li>Filtro de luz azul para protección ocular</li>
-                </ul>
-            </div>
-
-            <div class="product-item">
-                <div class="product-brand">EPSON Proyectores</div>
-                <div class="product-model">PowerLite E24 / V11H983020</div>
-                <ul class="product-specs">
-                    <li>3,500 Lúmenes de brillo</li>
-                    <li>Tecnología 3LCD color real</li>
-                    <li>Vida útil de lámpara hasta 12,000h</li>
-                </ul>
-            </div>
-            
-            <button onclick="closeModal('modalPantallas')" style="width:100%; padding:10px; border-radius:10px; border:none; background:#eee; font-weight:bold;">Cerrar</button>
         </div>
+
+        <div style="background: #f0f7ff; padding: 10px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #1a73e8;">
+            <div class="product-brand" style="color: #1a73e8;">EPSON (Proyectores)</div>
+            <div class="product-item">
+                <div class="product-model">PowerLite E24</div>
+                <div class="product-model">V11H983020</div>
+            </div>
+        </div>
+        
+        <button onclick="closeModal('modalPantallas')" style="width:100%; padding:12px; border-radius:10px; border:none; background:#333; color:white; font-weight:bold; cursor:pointer;">Regresar al Catálogo</button>
     </div>
-
-    <script>
-        function openModal(id) {
-            document.getElementById(id).style.display = "block";
-            document.body.style.overflow = "hidden"; // Evita scroll atrás
-        }
-
-        function closeModal(id) {
-            document.getElementById(id).style.display = "
+</div>
